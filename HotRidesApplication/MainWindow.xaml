@@ -218,7 +218,13 @@
     <Grid>
         <TabControl>
             <TabItem Header="Sign In">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <PasswordBox HorizontalAlignment="Center" Margin="0,217,0,0" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="tbxUser" HorizontalAlignment="Center" Margin="0,182,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Center" Margin="0,255,0,0" VerticalAlignment="Top" Width="85"/>
+                    <Label x:Name="lblUser" Content="Username: " HorizontalAlignment="Left" Margin="271,178,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="lblPass" Content="Password:" HorizontalAlignment="Left" Margin="271,213,0,0" VerticalAlignment="Top" Width="71"/>
+                </Grid>
             </TabItem>
             <TabItem Header="Registration">
                 <Grid Background="#FFE5E5E5">
