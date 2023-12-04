@@ -216,12 +216,12 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <TabControl>
-            <TabItem Header="Sign In">
+        <TabControl x:Name="tabController" SelectionChanged="tabController_SelectionChanged">
+            <TabItem Header="Sign In" x:Name="tabSign">
                 <Grid Background="#FFE5E5E5">
-                    <PasswordBox HorizontalAlignment="Center" Margin="0,217,0,0" VerticalAlignment="Top" Width="120"/>
+                    <PasswordBox x:Name="tbxPass" HorizontalAlignment="Center" Margin="0,217,0,0" VerticalAlignment="Top" Width="120"/>
                     <TextBox x:Name="tbxUser" HorizontalAlignment="Center" Margin="0,182,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                    <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Center" Margin="0,255,0,0" VerticalAlignment="Top" Width="85"/>
+                    <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Center" Margin="0,255,0,0" VerticalAlignment="Top" Width="85" Click="btnLogin_Click"/>
                     <Label x:Name="lblUser" Content="Username: " HorizontalAlignment="Left" Margin="271,178,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="lblPass" Content="Password:" HorizontalAlignment="Left" Margin="271,213,0,0" VerticalAlignment="Top" Width="71"/>
                 </Grid>
@@ -283,16 +283,16 @@
                     <Button x:Name="lblDeleteV" Grid.Column="4" Content="Delete Vehicle" HorizontalAlignment="Left" Margin="75,33,0,0" Grid.Row="4" VerticalAlignment="Top" Height="22" Width="93" RenderTransformOrigin="0.495,1.137" Foreground="White" Background="#FFC70707" FontWeight="Bold" Click="lblDeleteV_Click"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Vehicle">
+            <TabItem Header="Vehicle" >
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
-            <TabItem Header="TabItem">
+            <TabItem Header="TabItem" >
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
-            <TabItem Header="TabItem">
+            <TabItem Header="TabItem" >
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
-            <TabItem Header="TabItem">
+            <TabItem Header="TabItem" >
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>

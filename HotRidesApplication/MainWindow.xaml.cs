@@ -302,7 +302,7 @@ namespace HotRidesApplication
                 tbVMake.Text = dr["Make"].ToString();
                 tbVModel.Text = dr["Model"].ToString();
                 tbVYear.Text = dr["Year"].ToString();
-                cmbRegId.Text = getEventLocation(Int32.Parse(dr["Attendee ID"].ToString()));
+                cmbRegId.Text = getRegName(Int32.Parse(dr["Attendee ID"].ToString()));
             }
         }
 
@@ -412,6 +412,85 @@ namespace HotRidesApplication
                 MessageBox.Show(ex.Message);
             }
             return 0;
+        }
+
+        #region SignIn
+        /// <summary>
+        /// when the sign in button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            if(btnLogin.Content == "Login")
+            {
+                if (tbxUser.Text != "" && tbxPass.Password != "")
+                {
+                    string user = getUser(tbxUser.Text, tbxPass.Password);
+                    if (user != null)
+                    {
+                        CurrentUser = user;
+                        tabSign.Header = user;
+                        lblUser.Visibility = Visibility.Hidden;
+                        lblPass.Visibility = Visibility.Hidden;
+                        tbxUser.Visibility = Visibility.Hidden;
+                        tbxPass.Visibility = Visibility.Hidden;
+                        btnLogin.Content = "Logout";
+                        tabController.SelectedIndex = 1;
+                    }
+                }
+            }
+            else
+            {
+                CurrentUser = null;
+                tabSign.Header = "Sign In";
+                lblUser.Visibility = Visibility.Visible;
+                lblPass.Visibility = Visibility.Visible;
+                tbxUser.Visibility = Visibility.Visible;
+                tbxPass.Visibility = Visibility.Visible;
+                btnLogin.Content = "Login";
+            }
+        }
+
+        private string getUser(string username, string password)
+        {
+            SqlConnection sqlConnection = new SqlConnection(GetConnectionString());
+
+            try
+            {
+                sqlConnection.Open();
+                string query = "SELECT * FROM users";
+                SqlCommand cmd = new SqlCommand(query, sqlConnection);
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    if (dr.GetString(1).ToLower() == username.ToLower())
+                    {
+                        if(dr.GetString(2) == password)
+                        {
+                            return dr.GetString(1);
+                        }
+                    }
+
+                }
+                sqlConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return null;
+        }
+
+
+        #endregion
+
+        private void tabController_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CurrentUser == null && tabController.SelectedIndex != 1)
+            {
+                tabController.SelectedIndex = 0;
+            }
         }
     }
 }
